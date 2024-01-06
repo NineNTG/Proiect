@@ -1,0 +1,50 @@
+﻿@page
+@model Proiect.Pages.Transporturi.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Transport</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Transport.ID" />
+            <div class="form-group">
+                <label asp-for="Transport.Data" class="control-label"></label>
+                <input asp-for="Transport.Data" class="form-control" />
+                <span asp-validation-for="Transport.Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Transport.Status" class="control-label"></label>
+                <input asp-for="Transport.Status" class="form-control" />
+                <span asp-validation-for="Transport.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Transport.PartenerID" class="control-label">Nume Partener</label>
+                <select asp-for="Transport.PartenerID" class="form-control" asp-items="ViewBag.PartenerID"></select>
+                <span asp-validation-for="Transport.PartenerID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Transport.AngajatID" class="control-label">Nume Angajat</label>
+                <select asp-for="Transport.AngajatID" class="form-control" asp-items="ViewBag.AngajatID"></select>
+                <span asp-validation-for="Transport.AngajatID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

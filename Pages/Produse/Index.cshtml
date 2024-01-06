@@ -1,0 +1,71 @@
+﻿@page
+@model Proiect.Pages.Produse.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label>Nume Produs</label>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produs[0].Cantitate)
+            </th>
+            <th>
+                <label>Pret Bucata</label>
+            </th>
+            <th>
+                <label>Valoare Totala</label>
+            </th>
+            <th>
+                <label>Data Expirare</label>
+            <th>
+                <label>Nume Partener</label>
+            </th>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Produs) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantitate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pret)
+            </td>
+            <td>
+                    @{ 
+                        var result = Convert.ToDecimal(item.Cantitate) * item.Pret;
+                    }
+                    @Html.DisplayFor(modelItem => result)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data_Exp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Partener.Nume)
+            </td>
+            
+
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
